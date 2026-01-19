@@ -206,6 +206,6 @@ Add screenshots in `frontend/public/screenshots/` and update the paths below:
   - ![Login](frontend/public/screenshots/login.png)
   - ![Register](frontend/public/screenshots/register.png)
 - Event details with booking form
-  - ![Event Details](frontend/public/screenshots/event-details.png)
+  - ![Event Details](frontend/public/screenshots/event-page.png)
 - My Bookings page
   - ![My Bookings](frontend/public/screenshots/my-bookings.png)
