@@ -1,5 +1,5 @@
 function maxBookings(requests, totalSeats) {
-      requests.sort();
+      requests.sort((a, b) => a - b);
       let bookings = 0;
 
       while (totalSeats > 0 && bookings < requests.length) {

@@ -201,10 +201,10 @@ function EventDetails() {
                       <div className="flex items-center justify-between bg-white/5 p-2 rounded-2xl border border-white/10">
                         <button 
                           type="button"
-                          onClick={() => setBookingForm(prev => ({ seatsBooked: Math.max(1, prev.seatsBooked - 1) }))}
+                          onClick={() => setBookingForm(prev => ({eventId: eventId,  seatsBooked: Math.max(1, prev.seatsBooked - 1) }))}
                           className="w-12 h-12 flex items-center justify-center bg-white/5 rounded-xl text-white hover:bg-white/10 transition-all font-black text-xl"
                         >–</button>
-                        <span className="text-2xl font-black text-white">{bookingForm.quantity}</span>
+                        <span className="text-2xl font-black text-white">{bookingForm.seatsBooked}</span>
                         <button 
                           type="button"
                           onClick={() => setBookingForm(prev => ({ eventId: eventId, seatsBooked: Math.min(event.availableSeats, prev.seatsBooked + 1) }))}

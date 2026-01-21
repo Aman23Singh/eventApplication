@@ -11,7 +11,7 @@ function Footer() {
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-amber-600/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
           
           <div className="space-y-6">
             <div className="flex items-center gap-3">
@@ -50,20 +50,7 @@ function Footer() {
             </ul>
           </div>
 
-          <div>
-            <h3 className="text-white font-bold mb-6">Stay Updated</h3>
-            <p className="text-slate-400 text-sm mb-4">Get the latest event updates delivered to your inbox.</p>
-            <div className="relative group">
-              <input 
-                type="email" 
-                placeholder="Email address" 
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-amber-500/50 transition-all"
-              />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-amber-500 p-2 rounded-lg text-slate-950 hover:bg-amber-400 transition-colors">
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
+          
         </div>
 
        

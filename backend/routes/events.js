@@ -6,7 +6,6 @@ const eventRouter = express.Router();
 eventRouter.get("/", async (req, res) => {
 	try {
 		const now = new Date();
-      console.log(now);
 		const events = await Event.find({ date: { $gt: now } }).sort({ date: 1 });
 		return res.status(200).json({ events });
 	} catch (error) {

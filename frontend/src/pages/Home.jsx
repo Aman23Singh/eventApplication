@@ -7,6 +7,8 @@ function HomePage() {
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [eventsLoaded, setEventsLoaded] = useState(false);
+  const [emptyEvents, setEmptyEvents] = useState(false);
   const navigate = useNavigate();
 
   const categories = ['All'];
@@ -37,19 +39,48 @@ function HomePage() {
       const data = await response.json();
       if (response.ok) { 
         setEvents(data.events);
+        setEventsLoaded(true);
+        if (data.events.length == 0) {
+          setEmptyEvents(true);
+        }
         return;
       } else {
         console.error('Failed to fetch events');
       }
-    const mockData = [
-      { id: 1, title: 'Summer Music Festival 2025', date: '2025-06-15', venue: 'Central Park, Mumbai', price: 1500, category: 'Music', featured: true, image: 'https://images.unsplash.com/photo-1459749411177-042180ceea73' },
-      { id: 2, title: 'Tech Summit India', date: '2025-03-20', venue: 'Convention Center, Bangalore', price: 2500, category: 'Conference', featured: false, image: 'https://images.unsplash.com/photo-1540575861501-7ad058139ad3' },
-      { id: 3, title: 'Wedding Expo', date: '2025-04-10', venue: 'Grand Hyatt, Delhi', price: 500, category: 'Exhibition', featured: false, image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3' },
-    ];
-    setEvents(mockData);
   };
 
-  return (
+  const formatDate = (dateString) => {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    if (Number.isNaN(date.getTime())) return dateString;
+    return date.toLocaleDateString('en-IN', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+    });
+  };
+
+  if (!eventsLoaded) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-slate-500 text-lg font-medium">Loading events...</p>
+      </div>
+    );
+  } else if (emptyEvents) {
+    return (  
+       <div className="flex flex-col items-center justify-center py-20 text-center">
+      <div className="text-6xl mb-4">📭</div>
+      <h2 className="text-2xl font-semibold text-slate-700">
+        No Events Available
+      </h2>
+      <p className="text-slate-500 mt-2 max-w-md">
+        There are currently no events to display. Please check back later or
+        create a new event to get started.
+      </p>
+    </div>);
+  }
+  else 
+    return (
     <div className="bg-slate-50 min-h-screen font-sans selection:bg-amber-200">
       
       <section className="relative pt-20 pb-32 overflow-hidden bg-slate-900">
@@ -147,7 +178,7 @@ function HomePage() {
                     </div>
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-amber-500" />
-                      <span className="text-sm font-bold">{(event.date)}</span>
+                      <span className="text-sm font-bold">{formatDate(event.date)}</span>
                     </div>
                   </div>
                 </div>
